@@ -6,13 +6,22 @@ import java.util.Scanner;
  * 教程地址：https://www.liaoxuefeng.com/wiki/1252599548343744
  */
 public class Index {
-    new Base();
     /**
      *  主程
      * @param args
      */
     public static void main(String[] args) {
-        study20210923(args);
+//        study20210923(args);
+        study20211207(args);
+    }
+
+    /**
+     *
+     * @param args
+     */
+    public static void study20211207(String[] args){
+
+
     }
 
     /**
@@ -225,6 +234,7 @@ public class Index {
          * https://www.liaoxuefeng.com/wiki/1252599548343744/1260456371027744
          * 如果父类的方法本身不需要实现任何功能，仅仅是为了定义方法签名，目的是让子类去覆写它，那么，可以把父类的方法声明为抽象方法
          */
+//        Object $ab_obj = new AbClass();
     }
 
 }
@@ -258,4 +268,8 @@ class Person {
 
     }
 
+}
+
+abstract class AbClass{
+    public abstract void run();
 }
