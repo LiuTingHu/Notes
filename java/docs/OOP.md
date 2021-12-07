@@ -1,6 +1,3 @@
-<!-- START doctoc generated TOC please keep comment here to allow auto update -->
-<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
 
 - [面向对象 OOP（Object-Oriented Programming）](#%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1-oopobject-oriented-programming)
   - [1. 面向对象基础](#1-%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E5%9F%BA%E7%A1%80)
@@ -20,8 +17,6 @@
     - [1.11 classpath和jar](#111-classpath%E5%92%8Cjar)
     - [1.12 模块](#112-%E6%A8%A1%E5%9D%97)
   - [2. 面向对象-核心类](#2-%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1-%E6%A0%B8%E5%BF%83%E7%B1%BB)
-
-<!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 # 面向对象 OOP（Object-Oriented Programming）
 ## 1. 面向对象基础
