@@ -1,9 +1,9 @@
 # Java 基础知识梳理
-## 1. <a href="https://github.com/LiuTingHu/Notes/blob/master/java/docs/%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B.md" target="_blank">基本数据类型</a>
-## 2. <a href="https://github.com/LiuTingHu/Notes/blob/master/java/docs/%E6%B5%81%E7%A8%8B%E6%8E%A7%E5%88%B6.md" target="_blank">流程控制</a>
-## 3. <a href="https://github.com/LiuTingHu/Notes/blob/master/java/docs/%E6%95%B0%E7%BB%84%E6%93%8D%E4%BD%9C.md" target="_blank">数组操作</a>
-## 4. <a href="https://github.com/LiuTingHu/Notes/blob/master/java/docs/OOP.md" target="_blank">面向对象-基础</a>
-## 5. <a href="https://github.com/LiuTingHu/Notes/blob/master/java/docs/OOP.md#2-todo-%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1-%E6%A0%B8%E5%BF%83%E7%B1%BB" target="_blank">面向对象-核心类</a>
+## 1. [基本数据类型](https://github.com/LiuTingHu/Notes/blob/master/java/docs/%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B.md)
+## 2. [流程控制](https://github.com/LiuTingHu/Notes/blob/master/java/docs/%E6%B5%81%E7%A8%8B%E6%8E%A7%E5%88%B6.md)
+## 3. [数组操作](https://github.com/LiuTingHu/Notes/blob/master/java/docs/%E6%95%B0%E7%BB%84%E6%93%8D%E4%BD%9C.md)
+## 4. [面向对象-基础](https://github.com/LiuTingHu/Notes/blob/master/java/docs/OOP.md)
+## 5. [面向对象-核心类](https://github.com/LiuTingHu/Notes/blob/master/java/docs/OOP.md#2-todo-%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1-%E6%A0%B8%E5%BF%83%E7%B1%BB)
 ## 6. TODO 异常处理
 ## 7. TODO 反射
 ## 8. TODO 注解
