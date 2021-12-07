@@ -245,7 +245,40 @@ continue则是提前结束本次循环，直接继续执行下次循环。
         }
     }
 ## 3. 数组操作
-## 4. 面向对象 - OOP（Object-Oriented Programming）
+### 3.1 遍历数组
+方法1：
+
+    int[] ns = { 1, 4, 9, 16, 25 };
+    for (int i=0; i<ns.length; i++) {
+        int n = ns[i];
+        System.out.println(n);
+    }
+方法2：
+
+    int[] ns = { 1, 4, 9, 16, 25 };
+    for (int n : ns) {
+        System.out.println(n);
+    }
+
+打印数组：
+
+    int[] ns = { 1, 1, 2, 3, 5, 8 };
+    System.out.println(Arrays.toString(ns));
+### 3.2 数组排序
+
+    int[] ns = { 28, 12, 89, 73, 65, 18, 96, 50, 8, 36 };
+    Arrays.sort(ns);
+    System.out.println(Arrays.toString(ns));
+
+### 3.3 多维数组
+    int[][] ns = {
+        { 1, 2, 3, 4 },
+        { 5, 6, 7, 8 },
+        { 9, 10, 11, 12 }
+    };
+    System.out.println(ns.length); // 3
+
+## 4. 面向对象基础 - OOP（Object-Oriented Programming）
 ### 4.1 构造方法
 构造方法和类名相同，且可以有多个不同参数的构造方法。
 ### 4.2 方法重载
@@ -277,3 +310,34 @@ continue则是提前结束本次循环，直接继续执行下次循环。
 ### 4.4 多态
 ### 4.5 抽象类 
     如果父类的方法本身不需要实现任何功能，仅仅是为了定义方法签名，目的是让子类去覆写它，那么，可以把父类的方法声明为抽象方法。
+### 4.6 接口 
+### 4.7 静态字段和方法 
+### 4.8 包 
+### 4.9 作用域 
+### 4.10 内部类 
+### 4.11 classpath和jar 
+### 4.12 模块
+
+## 5. TODO 面向对象-核心类
+
+## 6. TODO 异常处理
+## 7. TODO 反射
+## 8. TODO 注解
+## 9. TODO 泛型
+## 10. TODO 集合
+## 11. TODO IO
+## 12. TODO 日期和时间
+## 13. TODO 单元测试
+## 14. TODO 正则表达式
+## 15. TODO 加密与安全
+## 16. TODO 多线程
+## 17. TODO Maven基础
+## 18. TODO 网络编程
+## 19. TODO XML与JSON
+## 20. TODO JDBC编程
+## 21. TODO 函数式编程
+## 22. TODO 设计模式
+## 23. TODO WEB开发
+## 24. TODO Spring开发
+## 25. TODO Spring Boot开发
+## 26. TODO Spring Cloud开发
