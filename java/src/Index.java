@@ -6,6 +6,7 @@ import java.util.Scanner;
  * 教程地址：https://www.liaoxuefeng.com/wiki/1252599548343744
  */
 public class Index {
+    new Base();
     /**
      *  主程
      * @param args
