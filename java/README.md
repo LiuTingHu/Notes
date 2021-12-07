@@ -280,7 +280,7 @@ continue则是提前结束本次循环，直接继续执行下次循环。
 
 ## 4. [面向对象基础 - OOP（Object-Oriented Programming）](https://github.com/LiuTingHu/Notes/blob/master/java/docs/OOP.md)
 
-## 5. [TODO 面向对象-核心类](https://github.com/LiuTingHu/Notes/blob/master/java/docs/OOP.md)
+## 5. [面向对象-核心类](https://github.com/LiuTingHu/Notes/blob/master/java/docs/OOP.md#2-todo-%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1-%E6%A0%B8%E5%BF%83%E7%B1%BB)
 
 ## 6. TODO 异常处理
 ## 7. TODO 反射
