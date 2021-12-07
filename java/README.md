@@ -278,9 +278,9 @@ continue则是提前结束本次循环，直接继续执行下次循环。
     };
     System.out.println(ns.length); // 3
 
-## 4. [面向对象基础 - OOP（Object-Oriented Programming）](./docs/OOP.md)
+## 4. [面向对象基础 - OOP（Object-Oriented Programming）](https://github.com/LiuTingHu/Notes/blob/master/java/docs/OOP.md)
 
-## 5. [TODO 面向对象-核心类]()
+## 5. [TODO 面向对象-核心类](https://github.com/LiuTingHu/Notes/blob/master/java/docs/OOP.md)
 
 ## 6. TODO 异常处理
 ## 7. TODO 反射
