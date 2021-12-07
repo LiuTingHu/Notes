@@ -24,7 +24,7 @@
 构造方法和类名相同，且可以有多个不同参数的构造方法。
 ### 1.2 方法重载
 在一个类中，我们可以定义多个方法。如果有一系列方法，它们的功能都是类似的，只有参数有所不同，那么，可以把这一组方法名做成同名方法。例如，在Hello类中，定义多个hello()方法：
-
+```java
     class Hello {
         public void hello() {
             System.out.println("Hello, world!");
@@ -42,6 +42,7 @@
             }
         }
     }
+```
 这种方法名相同，但各自的参数不同，称为方法重载（Overload）。
 
 注意：方法重载的返回值类型通常都是相同的。
@@ -65,17 +66,19 @@ Java只允许一个class继承自一个类，因此，一个类有且仅有一�
 
 ### 1.4 多态
 多态是指，针对某个类型的方法调用，其真正执行的方法取决于运行时期实际类型的方法。例如：
-
+```java
     Person p = new Student();
     p.run(); // 无法确定运行时究竟调用哪个run()方法
+```
 有童鞋会问，从上面的代码一看就明白，肯定调用的是Student的run()方法啊。
 
 但是，假设我们编写这样一个方法：
-
+```java
     public void runTwice(Person p) {
         p.run();
         p.run();
     }
+```
 它传入的参数类型是Person，我们是无法知道传入的参数实际类型究竟是Person，还是Student，还是Person的其他子类，因此，也无法确定调用的是不是Person类定义的run()方法。
 
 所以，多态的特性就是，运行期才能动态决定调用的子类方法。对某个类型调用某个方法，执行的实际方法可能是某个子类的覆写方法。
@@ -89,7 +92,7 @@ Java只允许一个class继承自一个类，因此，一个类有且仅有一�
     hashCode()：计算一个instance的哈希值。
 
 在必要的情况下，我们可以覆写Object的这几个方法。例如：
-
+```java
     class Person {
         ...
         // 显示更有意义的字符串:
@@ -115,9 +118,10 @@ Java只允许一个class继承自一个类，因此，一个类有且仅有一�
             return this.name.hashCode();
         }
     }
+```
 #### 1.4.2 调用super
 在子类的覆写方法中，如果要调用父类的被覆写的方法，可以通过super来调用。例如：
-
+```java
     class Person {
         protected String name;
         public String hello() {
@@ -132,9 +136,10 @@ Java只允许一个class继承自一个类，因此，一个类有且仅有一�
             return super.hello() + "!";
         }
     }
+```
 #### 1.4.3 final
 继承可以允许子类覆写父类的方法。如果一个父类不允许子类对它的某个方法进行覆写，可以把该方法标记为final。用final修饰的方法不能被Override：
-
+```java
     class Person {
         protected String name;
         public final String hello() {
@@ -148,9 +153,9 @@ Java只允许一个class继承自一个类，因此，一个类有且仅有一�
         public String hello() {
         }
     }
-
+```
 如果一个类不希望任何其他类继承自它，那么可以把这个类本身标记为final。用final修饰的类不能被继承：
-
+```java
     final class Person {
         protected String name;
     }
@@ -158,7 +163,7 @@ Java只允许一个class继承自一个类，因此，一个类有且仅有一�
     // compile error: 不允许继承自Person
     Student extends Person {
     }
-
+```
 总结：
 
 * 子类可以覆写父类的方法（Override），覆写在子类中改变了父类方法的行为； 

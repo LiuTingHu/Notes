@@ -3,7 +3,7 @@
 ## 2. [流程控制](https://github.com/LiuTingHu/Notes/blob/master/java/docs/%E6%B5%81%E7%A8%8B%E6%8E%A7%E5%88%B6.md)
 ## 3. [数组操作](https://github.com/LiuTingHu/Notes/blob/master/java/docs/%E6%95%B0%E7%BB%84%E6%93%8D%E4%BD%9C.md)
 ## 4. [面向对象-基础](https://github.com/LiuTingHu/Notes/blob/master/java/docs/OOP.md)
-## 5. [面向对象-核心类](https://github.com/LiuTingHu/Notes/blob/master/java/docs/OOP.md#2-todo-%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1-%E6%A0%B8%E5%BF%83%E7%B1%BB)
+## 5. [面向对象-核心类](https://github.com/LiuTingHu/Notes/blob/master/java/docs/OOP.md#2-%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1-%E6%A0%B8%E5%BF%83%E7%B1%BB)
 ## 6. TODO 异常处理
 ## 7. TODO 反射
 ## 8. TODO 注解
