@@ -1,5 +1,30 @@
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
+
+- [面向对象 OOP（Object-Oriented Programming）](#%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1-oopobject-oriented-programming)
+  - [1. 面向对象基础](#1-%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E5%9F%BA%E7%A1%80)
+    - [1.1 构造方法](#11-%E6%9E%84%E9%80%A0%E6%96%B9%E6%B3%95)
+    - [1.2 方法重载](#12-%E6%96%B9%E6%B3%95%E9%87%8D%E8%BD%BD)
+    - [1.3 继承](#13-%E7%BB%A7%E6%89%BF)
+    - [1.4 多态](#14-%E5%A4%9A%E6%80%81)
+      - [1.4.1 覆写Object方法](#141-%E8%A6%86%E5%86%99object%E6%96%B9%E6%B3%95)
+      - [1.4.2 调用super](#142-%E8%B0%83%E7%94%A8super)
+      - [1.4.3 final](#143-final)
+    - [1.5 抽象类](#15-%E6%8A%BD%E8%B1%A1%E7%B1%BB)
+    - [1.6 接口](#16-%E6%8E%A5%E5%8F%A3)
+    - [1.7 静态字段和方法](#17-%E9%9D%99%E6%80%81%E5%AD%97%E6%AE%B5%E5%92%8C%E6%96%B9%E6%B3%95)
+    - [1.8 包](#18-%E5%8C%85)
+    - [1.9 作用域](#19-%E4%BD%9C%E7%94%A8%E5%9F%9F)
+    - [1.10 内部类](#110-%E5%86%85%E9%83%A8%E7%B1%BB)
+    - [1.11 classpath和jar](#111-classpath%E5%92%8Cjar)
+    - [1.12 模块](#112-%E6%A8%A1%E5%9D%97)
+  - [2. 面向对象-核心类](#2-%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1-%E6%A0%B8%E5%BF%83%E7%B1%BB)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 # 面向对象 OOP（Object-Oriented Programming）
-## 1. 面向对象基础 
+## 1. 面向对象基础
 ### 1.1 构造方法
 构造方法和类名相同，且可以有多个不同参数的构造方法。
 ### 1.2 方法重载
@@ -60,7 +85,7 @@ Java只允许一个class继承自一个类，因此，一个类有且仅有一�
 
 所以，多态的特性就是，运行期才能动态决定调用的子类方法。对某个类型调用某个方法，执行的实际方法可能是某个子类的覆写方法。
 
-**覆写Object方法**
+#### 1.4.1 覆写Object方法
 
 因为所有的class最终都继承自Object，而Object定义了几个重要的方法：
     
@@ -95,6 +120,49 @@ Java只允许一个class继承自一个类，因此，一个类有且仅有一�
             return this.name.hashCode();
         }
     }
+#### 1.4.2 调用super
+在子类的覆写方法中，如果要调用父类的被覆写的方法，可以通过super来调用。例如：
+
+    class Person {
+        protected String name;
+        public String hello() {
+            return "Hello, " + name;
+        }
+    }
+    
+    Student extends Person {
+        @Override
+        public String hello() {
+            // 调用父类的hello()方法:
+            return super.hello() + "!";
+        }
+    }
+#### 1.4.3 final
+继承可以允许子类覆写父类的方法。如果一个父类不允许子类对它的某个方法进行覆写，可以把该方法标记为final。用final修饰的方法不能被Override：
+
+    class Person {
+        protected String name;
+        public final String hello() {
+            return "Hello, " + name;
+        }
+    }
+    
+    Student extends Person {
+        // compile error: 不允许覆写
+        @Override
+        public String hello() {
+        }
+    }
+
+如果一个类不希望任何其他类继承自它，那么可以把这个类本身标记为final。用final修饰的类不能被继承：
+
+    final class Person {
+        protected String name;
+    }
+    
+    // compile error: 不允许继承自Person
+    Student extends Person {
+    }
 
 总结：
 
@@ -115,4 +183,4 @@ Java只允许一个class继承自一个类，因此，一个类有且仅有一�
 ### 1.11 classpath和jar
 ### 1.12 模块
 
-## 2. TODO 面向对象-核心类
+## 2. 面向对象-核心类
