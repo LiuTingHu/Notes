@@ -1,4 +1,4 @@
-# Java 基础知识梳理
+# Java 基础知识笔记梳理
 ## 1. [基本数据类型](https://github.com/LiuTingHu/Notes/blob/master/java/docs/%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B.md)
 ## 2. [流程控制](https://github.com/LiuTingHu/Notes/blob/master/java/docs/%E6%B5%81%E7%A8%8B%E6%8E%A7%E5%88%B6.md)
 ## 3. [数组操作](https://github.com/LiuTingHu/Notes/blob/master/java/docs/%E6%95%B0%E7%BB%84%E6%93%8D%E4%BD%9C.md)
