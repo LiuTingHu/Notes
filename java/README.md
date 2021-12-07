@@ -278,47 +278,9 @@ continue则是提前结束本次循环，直接继续执行下次循环。
     };
     System.out.println(ns.length); // 3
 
-## 4. 面向对象基础 - OOP（Object-Oriented Programming）
-### 4.1 构造方法
-构造方法和类名相同，且可以有多个不同参数的构造方法。
-### 4.2 方法重载
-在一个类中，我们可以定义多个方法。如果有一系列方法，它们的功能都是类似的，只有参数有所不同，那么，可以把这一组方法名做成同名方法。例如，在Hello类中，定义多个hello()方法：
+## 4. [面向对象基础 - OOP（Object-Oriented Programming）](./docs/OOP.md)
 
-    class Hello {
-        public void hello() {
-            System.out.println("Hello, world!");
-        }
-
-        public void hello(String name) {
-            System.out.println("Hello, " + name + "!");
-        }
-    
-        public void hello(String name, int age) {
-            if (age < 18) {
-                System.out.println("Hi, " + name + "!");
-            } else {
-                System.out.println("Hello, " + name + "!");
-            }
-        }
-    }
-这种方法名相同，但各自的参数不同，称为方法重载（Overload）。
-
-注意：方法重载的返回值类型通常都是相同的。
-
-方法重载的目的是，功能类似的方法使用同一名字，更容易记住，因此，调用起来更简单。
-### 4.3 继承
-### 4.4 多态
-### 4.5 抽象类 
-    如果父类的方法本身不需要实现任何功能，仅仅是为了定义方法签名，目的是让子类去覆写它，那么，可以把父类的方法声明为抽象方法。
-### 4.6 接口 
-### 4.7 静态字段和方法 
-### 4.8 包 
-### 4.9 作用域 
-### 4.10 内部类 
-### 4.11 classpath和jar 
-### 4.12 模块
-
-## 5. TODO 面向对象-核心类
+## 5. [TODO 面向对象-核心类]()
 
 ## 6. TODO 异常处理
 ## 7. TODO 反射
