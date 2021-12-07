@@ -12,22 +12,30 @@
     zb = 1024 eb
     yb = 1024 zb
          
-（1）.整数类型：byte，short（2 byte），int（4 byte），long（8 byte）
+**（1）.整数类型**
+
+byte，short（2 byte），int（4 byte），long（8 byte）
      
-（2）.浮点数类型：float（4 byte），double（8 byte）
+**（2）.浮点数类型**
+
+float（4 byte），double（8 byte）
      
-（3）.字符类型：char（2 byte）
+**（3）.字符类型**
+
+char（2 byte）
      
-（4）.布尔类型：boolean
+**（4）.布尔类型**
+
+boolean
 
     除了上述基本类型的变量，剩下的都是引用类型。
 
-（5）.引用类型
+**（5）.引用类型**
 
     除了上述基本类型的变量，剩下的都是引用类型。例如，引用类型最常用的就是String字符串：
     String s = "hello";
     引用类型的变量类似于C语言的指针，它内部存储一个“地址”，指向某个对象在内存的位置
-（6）.数组类型
+**（6）.数组类型**
 
     定义一个数组类型的变量，使用数组类型“类型[]”，例如，int[]。和单个基本类型变量不同，数组变量初始化必须使用new int[5]表示创建一个可容纳5个int元素的数组。
     
@@ -54,7 +62,7 @@
     
     数组元素可以是值类型（如int）或引用类型（如String），但数组本身是引用类型；
 
-（7）.常量
+**（7）.常量**
 
     定义变量的时候，如果加上final修饰符，这个变量就变成了常量：
     
@@ -66,7 +74,7 @@
     
     常量的作用是用有意义的变量名来避免魔术数字（Magic number）。
     根据习惯，常量名通常全部大写。
-（8）.var关键字
+**（8）.var关键字**
 
 有些时候，类型的名字太长，写起来比较麻烦。例如：
 
@@ -83,6 +91,158 @@
     因此，使用var定义变量，仅仅是少写了变量类型而已。
 
 ## 2. 流程控制
+### 2.1 输入输出
+**（1）.输出**
+
+我们总是使用System.out.println()来向屏幕输出一些内容。
+println是print line的缩写，表示输出并换行。因此，如果输出后不想换行，可以用print()：
+
+    public class Main {
+        public static void main(String[] args) {
+            System.out.print("A,");
+            System.out.print("B,");
+            System.out.print("C.");
+            System.out.println();
+            System.out.println("END");
+        }
+    }
+
+**格式化输出**
+
+如果要把数据显示成我们期望的格式，就需要使用格式化输出的功能。格式化输出使用System.out.printf()，通过使用占位符%?，printf()可以把后面的参数格式化成指定格式：
+
+    public class Main {
+        public static void main(String[] args) {
+            double d = 3.1415926;
+            System.out.printf("%.2f\n", d); // 显示两位小数3.14
+            System.out.printf("%.4f\n", d); // 显示4位小数3.1416
+        }
+    }
+
+**占位符说明**
+
+|占位符|说明|
+|---|----|
+|%d|格式化输出整数|
+|%x|格式化输出十六进制整数|
+|%f|格式化输出浮点数|
+|%e|格式化输出科学计数法表示的浮点数|
+|%s|格式化字符串|
+
+注意，由于%表示占位符，因此，连续两个%%表示一个%字符本身。
+
+**（2） 输入**
+我们先看一个从控制台读取一个字符串和一个整数的例子：
+
+    import java.util.Scanner;
+    
+    public class Main {
+        public static void main(String[] args) {
+            Scanner scanner = new Scanner(System.in); // 创建Scanner对象
+            System.out.print("Input your name: "); // 打印提示
+            String name = scanner.nextLine(); // 读取一行输入并获取字符串
+            System.out.print("Input your age: "); // 打印提示
+            int age = scanner.nextInt(); // 读取一行输入并获取整数
+            System.out.printf("Hi, %s, you are %d\n", name, age); // 格式化输出
+        }
+    }
+首先，我们通过import语句导入java.util.Scanner，import是导入某个类的语句，必须放到Java源代码的开头，后面我们在Java的package中会详细讲解如何使用import。
+
+然后，创建Scanner对象并传入System.in。System.out代表标准输出流，而System.in代表标准输入流。直接使用System.in读取用户输入虽然是可以的，但需要更复杂的代码，而通过Scanner就可以简化后续的代码。
+
+有了Scanner对象后，要读取用户输入的字符串，使用scanner.nextLine()，要读取用户输入的整数，使用scanner.nextInt()。Scanner会自动转换数据类型，因此不必手动转换。
+
+要测试输入，我们不能在线运行它，因为输入必须从命令行读取，因此，需要走编译、执行的流程：
+
+    $ javac Main.java
+
+这个程序编译时如果有警告，可以暂时忽略它，在后面学习IO的时候再详细解释。编译成功后，执行：
+
+    $ java Main
+    Input your name: Bob
+    Input your age: 12
+    Hi, Bob, you are 12
+
+根据提示分别输入一个字符串和整数后，我们得到了格式化的输出。
+
+### 2.2 if判断
+if语句的基本语法是：
+
+    if (条件) {
+    // 条件满足时执行
+    }
+### 2.3 switch多重选择
+
+switch语句根据switch (表达式)计算的结果，跳转到匹配的case结果，然后继续执行后续语句，直到遇到break结束执行。
+
+    public class Main {
+        public static void main(String[] args) {
+            int option = 1;
+            switch (option) {
+                case 1:
+                System.out.println("Selected 1");
+                break;
+                case 2:
+                System.out.println("Selected 2");
+                break;
+                case 3:
+                System.out.println("Selected 3");
+                break;
+            }
+        }
+    }
+### 2.4 while循环
+基本用法：
+
+    while (条件表达式) {
+        循环语句
+    }
+
+### 2.5 do while 循环
+基本用法：
+
+    do {
+        执行循环语句
+    } while (条件表达式);
+
+### 2.6 for循环
+基本用法：
+
+    for (初始条件; 循环检测条件; 循环后更新计数器) {
+    // 执行语句
+    }
+### 2.7 break和continue
+在循环过程中，可以使用break语句跳出当前循环。
+
+    public class Main {
+        public static void main(String[] args) {
+            int sum = 0;
+            for (int i=1; ; i++) {
+                sum = sum + i;
+                if (i == 100) {
+                    break;
+                }
+            }
+            System.out.println(sum);
+        }
+    }
+
+continue则是提前结束本次循环，直接继续执行下次循环。
+
+    public class Main {
+        public static void main(String[] args) {
+            int sum = 0;
+            for (int i=1; i<=10; i++) {
+                System.out.println("begin i = " + i);
+                if (i % 2 == 0) {
+                    continue; // continue语句会结束本次循环
+                }
+                sum = sum + i;
+                System.out.println("end i = " + i);
+            }
+            System.out.println(sum); // 25
+        }
+    }
 ## 3. 数组操作
 ## 4. 面向对象 - OOP（Object-Oriented Programming）
 ### 4.1 构造方法
