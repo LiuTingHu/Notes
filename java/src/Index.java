@@ -16,12 +16,13 @@ public class Index {
     }
 
     /**
-     *
+     * https://www.liaoxuefeng.com/wiki/1252599548343744/1260464690677856
      * @param args
      */
     public static void study20211207(String[] args){
-
-
+        Base $base_obj = new Base();
+        System.out.println(Base.test());
+        System.out.println($base_obj.test2());
     }
 
     /**

@@ -445,6 +445,7 @@ public interface Person {
 - 静态方法常用于工具类和辅助方法。
 
 ### 1.8 包
+
 ### 1.9 作用域
 ### 1.10 内部类
 ### 1.11 classpath和jar
