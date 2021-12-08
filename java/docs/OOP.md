@@ -445,10 +445,117 @@ public interface Person {
 - 静态方法常用于工具类和辅助方法。
 
 ### 1.8 包
+在Java中，我们使用`package`来解决名字冲突。
+
+Java定义了一种名字空间，称之为包：`package`。一个类总是属于某个包，类名（比如`Person`）只是一个简写，真正的完整类名是`包名.类名`。
+如：
+
+```java
+package ming; // 申明包名ming
+
+public class Person {
+}
+```
+在Java虚拟机执行的时候，JVM只看完整类名，因此，只要包名不同，类就不同。
+
+包可以是多层结构，用.隔开。例如：`java.util`。
+
+**总结**
+- Java内建的package机制是为了避免class命名冲突； 
+- JDK的核心类使用java.lang包，编译器会自动导入； 
+- JDK的其它常用类定义在java.util.*，java.math.*，java.text.*，……； 
+- 用`import`导入其他包；
+- 包名推荐使用倒置的域名，例如org.apache。
 
 ### 1.9 作用域
+
+- Java内建的访问权限包括public、protected、private和package权限； \
+- Java在方法内部定义的变量是局部变量，局部变量的作用域从变量声明开始，到一个块结束； 
+- final修饰符不是访问权限，它可以修饰class、field和method； 
+- 一个.java文件只能包含一个public类，但可以包含多个非public类。
+
 ### 1.10 内部类
+Java的内部类可分为Inner Class、Anonymous Class和Static Nested Class三种： 
+  - Inner Class和Anonymous Class本质上是相同的，都必须依附于Outer Class的实例，即隐含地持有Outer.this实例，并拥有Outer Class的private访问权限； 
+  - Static Nested Class是独立类，但拥有Outer Class的private访问权限。
+
 ### 1.11 classpath和jar
+#### 1.11.1 classpath
+`classpath`是JVM用到的一个环境变量，它用来指示JVM如何搜索`class`。
+
+因为Java是编译型语言，源码文件是`.java`，而编译后的`.class`文件才是真正可以被JVM执行的字节码。因此，JVM需要知道，如果要加载一个`abc.xyz.Hello`的类，应该去哪搜索对应的`Hello.class`文件。
+
+所以，`classpath`就是一组目录的集合，它设置的搜索路径与操作系统相关。例如，在Windows系统上，用`;`分隔，带空格的目录用`""`括起来，可能长这样：
+
+`C:\work\project1\bin;C:\shared;"D:\My Documents\project1\bin"`
+
+在Linux系统上，用:分隔，可能长这样：
+
+`/usr/shared:/usr/local/bin:/home/liaoxuefeng/bin`
+
+**classpath的设定方法有两种：**
+
+- 在系统环境变量中设置classpath环境变量，不推荐； 
+- 在启动JVM时设置classpath变量，推荐。
+
+我们强烈不推荐在系统环境变量中设置`classpath`，那样会污染整个系统环境。在启动JVM时设置`classpath`才是推荐的做法。实际上就是给java命令传入`-classpath`或`-cp`参数：
+
+`java -classpath .;C:\work\project1\bin;C:\shared abc.xyz.Hello`
+
+或者使用-cp的简写：
+
+`java -cp .;C:\work\project1\bin;C:\shared abc.xyz.Hello`
+
+没有设置系统环境变量，也没有传入-cp参数，那么JVM默认的classpath为.，即当前目录：
+
+`java abc.xyz.Hello`
+
+#### 1.11.2 jar
+
+如果有很多`.class`文件，散落在各层目录中，肯定不便于管理。如果能把目录打一个包，变成一个文件，就方便多了。
+
+`jar包`就是用来干这个事的，它可以把`package`组织的目录层级，以及各个目录下的所有文件（包括`.class`文件和其他文件）都打成一个`jar文件`，这样一来，无论是备份，还是发给客户，就简单多了。
+
+`jar包`实际上就是一个`zip格式`的压缩文件，而`jar包`相当于目录。如果我们要执行一个`jar包`的`class`，就可以把`jar包`放到`classpath`中：
+
+`java -cp ./hello.jar abc.xyz.Hello`
+
+这样JVM会自动在`hello.jar`文件里去搜索某个类。
+
+**如何创建jar包？**
+
+因为jar包就是zip包，所以，直接在资源管理器中，找到正确的目录，点击右键，在弹出的快捷菜单中选择“发送到”，“压缩(zipped)文件夹”，就制作了一个zip文件。然后，把后缀从.zip改为.jar，一个jar包就创建成功。
+
+#### 1.11.3 总结
+
+- JVM通过环境变量classpath决定搜索class的路径和顺序；
+
+- 不推荐设置系统环境变量classpath，始终建议通过-cp命令传入；
+
+- jar包相当于目录，可以包含很多.class文件，方便下载和使用；
+
+- MANIFEST.MF文件可以提供jar包的信息，如Main-Class，这样可以直接运行jar包。
+
 ### 1.12 模块
+从Java 9开始，JDK又引入了模块（Module）。
+
+**总结**
+
+- Java 9引入的模块目的是为了管理依赖； 
+- 使用模块可以按需打包JRE； 
+- 使用模块对类的访问权限有了进一步限制。
 
 ## 2. 面向对象-核心类
+### 2.1 字符串和编码
+
+### 2.2 StringBuilder
+
+### 2.3 StringJoiner
+
+### 2.4 包装类型
+
+### 2.5 JavaBean
+
+### 2.6 枚举
+
+### 2.7 常用工具类
