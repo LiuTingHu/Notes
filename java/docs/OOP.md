@@ -29,8 +29,18 @@
     - [1.9 作用域](#19-%E4%BD%9C%E7%94%A8%E5%9F%9F)
     - [1.10 内部类](#110-%E5%86%85%E9%83%A8%E7%B1%BB)
     - [1.11 classpath和jar](#111-classpath%E5%92%8Cjar)
+      - [1.11.1 classpath](#1111-classpath)
+      - [1.11.2 jar](#1112-jar)
+      - [1.11.3 总结](#1113-%E6%80%BB%E7%BB%93)
     - [1.12 模块](#112-%E6%A8%A1%E5%9D%97)
   - [2. 面向对象-核心类](#2-%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1-%E6%A0%B8%E5%BF%83%E7%B1%BB)
+    - [2.1 字符串和编码](#21-%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%92%8C%E7%BC%96%E7%A0%81)
+    - [2.2 StringBuilder](#22-stringbuilder)
+    - [2.3 StringJoiner](#23-stringjoiner)
+    - [2.4 包装类型](#24-%E5%8C%85%E8%A3%85%E7%B1%BB%E5%9E%8B)
+    - [2.5 JavaBean](#25-javabean)
+    - [2.6 枚举](#26-%E6%9E%9A%E4%B8%BE)
+    - [2.7 常用工具类](#27-%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7%E7%B1%BB)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
