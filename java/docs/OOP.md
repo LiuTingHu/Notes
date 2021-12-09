@@ -665,7 +665,70 @@ String s = sb.toString();
 
 ### 2.3 StringJoiner
 
+`StringJoiner`可以用分隔符拼接数组。`StringJoiner`可以指定“开头”和“结尾”。如：
+
+```java
+public class Main {
+    public static void main(String[] args) {
+        String[] names = {"Bob", "Alice", "Grace"};
+        var sj = new StringJoiner(", ", "Hello ", "!");
+        for (String name : names) {
+            sj.add(name);
+        }
+        System.out.println(sj.toString());
+    }
+}
+```
+
+`String`还提供了一个静态方法`join()`，这个方法在内部使用了`StringJoiner`来拼接字符串，在不需要指定“开头”和“结尾”的时候，用`String.join()`更方便：
+```java
+String[] names = {"Bob", "Alice", "Grace"};
+var s = String.join(", ", names);
+```
+**总结**
+
+- 用指定分隔符拼接字符串数组时，使用StringJoiner或者String.join()更方便；
+- 用StringJoiner拼接字符串时，还可以额外附加一个“开头”和“结尾”。
+
 ### 2.4 包装类型
+Java的数据类型分两种：
+
+- 基本类型：`byte`，`short`，`int`，`long`，`boolean`，`float`，`double`，`char`
+
+- 引用类型：所有`class`和`interface`类型
+
+引用类型可以赋值为`null`，表示空，但基本类型不能赋值为`null`：
+
+```java
+String s = null;
+int n = null; // compile error!
+```
+那么，如何把一个基本类型视为对象（引用类型）？对应的包装类型如下：
+
+|基本类型|对应的引用类型|
+|----|----|
+| boolean |	java.lang.Boolean |
+| byte |	java.lang.Byte |
+| short |	java.lang.Short |
+| int |	java.lang.Integer |
+| long |	java.lang.Long |
+| float |	java.lang.Float |
+| double |	java.lang.Double |
+| char |	java.lang.Character |
+
+**总结**
+
+- Java核心库提供的包装类型可以把基本类型包装为class；
+
+- 自动装箱和自动拆箱都是在编译期完成的（JDK>=1.5）；
+
+- 装箱和拆箱会影响执行效率，且拆箱时可能发生NullPointerException；
+
+- 包装类型的比较必须使用equals()；
+
+- 整数和浮点数的包装类型都继承自Number；
+
+- 包装类型提供了大量实用方法。
 
 ### 2.5 JavaBean
 
