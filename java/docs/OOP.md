@@ -579,8 +579,10 @@ Java的内部类可分为Inner Class、Anonymous Class和Static Nested Class三�
 
 **常用的字符串方法**
 
-`String s = "Hello";
-String s2 = "Hello World";`
+```java
+String s = "Hello";
+String s2 = "Hello World";
+```
 
 |字符串方法|说明|实例|
 |----|----|----|
