@@ -732,6 +732,207 @@ int n = null; // compile error!
 
 ### 2.5 JavaBean
 
+在Java中，有很多`class`的定义都符合这样的规范：
+
+- 若干`private`实例字段； 
+- 通过`public`方法来读写实例字段。
+
+例如：
+```java
+public class Person {
+private String name;
+private int age;
+
+    public String getName() { return this.name; }
+    public void setName(String name) { this.name = name; }
+
+    public int getAge() { return this.age; }
+    public void setAge(int age) { this.age = age; }
+}
+```
+
+如果读写方法符合以下这种命名规范：
+
+```java
+// 读方法:
+public Type getXyz()
+// 写方法:
+public void setXyz(Type value)
+
+```
+那么这种`class`被称为`JavaBean`。
+
+`JavaBean`主要用来传递数据，即把一组数据组合成一个`JavaBean`便于传输。
+
+**总结**
+
+- JavaBean是一种符合命名规范的class，它通过getter和setter来定义属性；
+- 属性是一种通用的叫法，并非Java语法规定；
+- 可以利用IDE快速生成getter和setter；
+- 使用Introspector.getBeanInfo()可以获取属性列表。
+
 ### 2.6 枚举
 
-### 2.7 常用工具类
+用`enum`来定义枚举类。
+
+```java
+public class Main {
+    public static void main(String[] args) {
+        Weekday day = Weekday.SUN;
+        if (day == Weekday.SAT || day == Weekday.SUN) {
+            System.out.println("Work at home!");
+        } else {
+            System.out.println("Work at office!");
+        }
+    }
+}
+
+enum Weekday {
+    SUN, MON, TUE, WED, THU, FRI, SAT;
+}
+```
+
+**总结**
+
+- Java使用enum定义枚举类型，它被编译器编译为final class Xxx extends Enum { … }；
+- 通过name()获取常量定义的字符串，注意不要使用toString()；
+- 通过ordinal()返回常量定义的顺序（无实质意义）；
+- 可以为enum编写构造方法、字段和方法
+- enum的构造方法要声明为private，字段强烈建议声明为final；
+- enum适合用在switch语句中。
+
+### 2.7 记录类（不变类）
+```java
+public record Point(int x, int y) {}
+```
+
+相当于以下代码：
+
+```java
+public final class Point extends Record {
+    private final int x;
+    private final int y;
+
+    public Point(int x, int y) {
+        this.x = x;
+        this.y = y;
+    }
+
+    public int x() {
+        return this.x;
+    }
+
+    public int y() {
+        return this.y;
+    }
+
+    public String toString() {
+        return String.format("Point[x=%s, y=%s]", x, y);
+    }
+
+    public boolean equals(Object o) {
+        ...
+    }
+    public int hashCode() {
+        ...
+    }
+}
+```
+
+**总结**
+
+从Java 14开始，提供新的record关键字，可以非常方便地定义Data Class：
+- 使用record定义的是不变类；
+- 可以编写Compact Constructor对参数进行验证；
+- 可以定义静态方法。
+
+### 2.8 BigInteger
+`java.math.BigInteger`就是用来表示任意大小的整数。
+
+`BigInteger`和`Integer`、`Long`一样，也是不可变类，并且也继承自`Number类`。因为`Number`定义了转换为基本类型的几个方法：
+
+- 转换为`byte`：`byteValue()`
+- 转换为`short`：`shortValue()`
+- 转换为`int`：`intValue()`
+- 转换为`long`：`longValue()`
+- 转换为`float`：`floatValue()`
+- 转换为`double`：`doubleValue()`
+
+**总结**
+
+- BigInteger用于表示任意大小的整数；
+- BigInteger是不变类，并且继承自Number；
+- 将BigInteger转换成基本类型时可使用longValueExact()等方法保证结果准确。
+
+### 2.9 BigDecimal
+
+和`BigInteger`类似，`BigDecimal`可以表示一个任意大小且精度完全准确的浮点数。
+
+````java
+BigDecimal bd = new BigDecimal("123.4567");
+System.out.println(bd.multiply(bd)); // 15241.55677489
+````
+
+`BigDecimal`用scale()表示小数位数，例如：
+
+````java
+BigDecimal d1 = new BigDecimal("123.45");
+BigDecimal d2 = new BigDecimal("123.4500");
+BigDecimal d3 = new BigDecimal("1234500");
+System.out.println(d1.scale()); // 2,两位小数
+System.out.println(d2.scale()); // 4
+System.out.println(d3.scale()); // 0
+````
+
+通过`BigDecimal`的`stripTrailingZeros()`方法，可以将一个`BigDecimal`格式化为一个相等的，但去掉了末尾0的`BigDecimal`
+
+```java
+BigDecimal d1 = new BigDecimal("123.4500");
+BigDecimal d2 = d1.stripTrailingZeros();
+System.out.println(d1.scale()); // 4
+System.out.println(d2.scale()); // 2,因为去掉了00
+
+BigDecimal d3 = new BigDecimal("1234500");
+BigDecimal d4 = d3.stripTrailingZeros();
+System.out.println(d3.scale()); // 0
+System.out.println(d4.scale()); // -2
+```
+如果一个`BigDecimal`的`scale()`返回负数，例如，`-2`，表示这个数是个整数，并且末尾有`2个0`。
+
+
+调用`divideAndRemainder()`方法时，返回的数组包含两个`BigDecimal`，分别是商和余数，其中商总是整数，余数不会大于除数。我们可以利用这个方法判断两个`BigDecimal`是否是整数倍数：
+
+```java
+BigDecimal n = new BigDecimal("12.75");
+BigDecimal m = new BigDecimal("0.15");
+BigDecimal[] dr = n.divideAndRemainder(m);
+if (dr[1].signum() == 0) {
+    // n是m的整数倍
+}
+```
+
+**比较BigDecimal**
+在比较两个`BigDecimal`的值是否相等时，要特别注意，使用`equals()`方法不但要求两个`BigDecimal`的值相等，还要求它们的`scale()`相等：
+
+```java
+BigDecimal d1 = new BigDecimal("123.456");
+BigDecimal d2 = new BigDecimal("123.45600");
+System.out.println(d1.equals(d2)); // false,因为scale不同
+System.out.println(d1.equals(d2.stripTrailingZeros())); // true,因为d2去除尾部0后scale变为2
+System.out.println(d1.compareTo(d2)); // 0
+```
+
+必须使用`compareTo()`方法来比较，它根据两个值的大小分别返回`负数`、`正数`和`0`，分别表示`小于`、`大于`和`等于`。
+
+`总是使用compareTo()比较两个BigDecimal的值，不要使用equals()！`
+
+`BigDecimal`也是从`Number`继承的，也是不可变对象。
+
+
+**总结**
+
+- BigDecimal用于表示精确的小数，常用于财务计算； 
+- 比较BigDecimal的值是否相等，必须使用compareTo()而不能使用equals()。
+
+### 2.10 常用工具类
+

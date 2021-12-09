@@ -1,3 +1,4 @@
+import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.Scanner;
 
@@ -23,6 +24,10 @@ public class Index {
         Base $base_obj = new Base();
         System.out.println(Base.test());
         System.out.println($base_obj.test2());
+        BigDecimal bd = new BigDecimal("123.4567891234567891234567890");
+        System.out.println(bd); // 15241.55677489
+        System.out.println(bd.multiply(bd)); // 15241.55677489
+
     }
 
     /**
