@@ -40,7 +40,17 @@
     - [2.4 包装类型](#24-%E5%8C%85%E8%A3%85%E7%B1%BB%E5%9E%8B)
     - [2.5 JavaBean](#25-javabean)
     - [2.6 枚举](#26-%E6%9E%9A%E4%B8%BE)
-    - [2.7 常用工具类](#27-%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7%E7%B1%BB)
+    - [2.7 记录类（不变类）](#27-%E8%AE%B0%E5%BD%95%E7%B1%BB%E4%B8%8D%E5%8F%98%E7%B1%BB)
+    - [2.8 BigInteger](#28-biginteger)
+    - [2.9 BigDecimal](#29-bigdecimal)
+    - [2.10 常用工具类](#210-%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7%E7%B1%BB)
+      - [2.10.1 Math](#2101-math)
+      - [2.10.2 三角函数](#2102-%E4%B8%89%E8%A7%92%E5%87%BD%E6%95%B0)
+      - [2.10.3 数学常量](#2103-%E6%95%B0%E5%AD%A6%E5%B8%B8%E9%87%8F)
+      - [2.10.4 生成一个随机数x](#2104-%E7%94%9F%E6%88%90%E4%B8%80%E4%B8%AA%E9%9A%8F%E6%9C%BA%E6%95%B0x)
+      - [2.10.5 Random](#2105-random)
+      - [1.10.6 SecureRandom](#1106-securerandom)
+      - [1.10.7 总结](#1107-%E6%80%BB%E7%BB%93)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -936,3 +946,156 @@ System.out.println(d1.compareTo(d2)); // 0
 
 ### 2.10 常用工具类
 
+#### 2.10.1 Math
+
+顾名思义，Math类就是用来进行数学计算的，它提供了大量的静态方法来便于我们实现数学计算。
+
+求绝对值：
+
+```java
+Math.abs(-100); // 100
+Math.abs(-7.8); // 7.8
+```
+
+取最大或最小值：
+
+```java
+Math.max(100, 99); // 100
+Math.min(1.2, 2.3); // 1.2
+```
+计算xy次方：
+
+```java
+Math.pow(2, 10); // 2的10次方=1024
+```
+计算√x：
+
+```java
+Math.sqrt(2); // 1.414...
+```
+计算ex次方：
+
+```java
+Math.exp(2); // 7.389...
+```
+计算以e为底的对数：
+
+```java
+Math.log(4); // 1.386...
+```
+计算以10为底的对数：
+
+```java
+Math.log10(100); // 2
+```
+
+#### 2.10.2 三角函数
+
+```java
+Math.sin(3.14); // 0.00159...
+Math.cos(3.14); // -0.9999...
+Math.tan(3.14); // -0.0015...
+Math.asin(1.0); // 1.57079...
+Math.acos(1.0); // 0.0
+```
+
+#### 2.10.3 数学常量
+```java
+double pi = Math.PI; // 3.14159...
+double e = Math.E; // 2.7182818...
+Math.sin(Math.PI / 6); // sin(π/6) = 0.5
+```
+
+#### 2.10.4 生成一个随机数x
+
+x的范围是0 <= x < 1：
+
+```java
+Math.random(); // 0.53907... 每次都不一样
+```
+
+如果我们要生成一个区间在[MIN, MAX)的随机数，可以借助Math.random()实现，计算如下：
+```java
+// 区间在[MIN, MAX)的随机数
+public class Main {
+    public static void main(String[] args) {
+        double x = Math.random(); // x的范围是[0,1)
+        double min = 10;
+        double max = 50;
+        double y = x * (max - min) + min; // y的范围是[10,50)
+        long n = (long) y; // n的范围是[10,50)的整数
+        System.out.println(y);
+        System.out.println(n);
+    }
+}
+```
+
+有些童鞋可能注意到`Java`标准库还提供了一个`StrictMath`，它提供了和`Math`几乎一模一样的方法。这两个类的区别在于，由于浮点数计算存在误差，不同的平台（例如`x86`和`ARM`）计算的结果可能不一致（指误差不同），因此，`StrictMath`保证所有平台计算结果都是完全相同的，而`Math`会尽量针对平台优化计算速度，所以，绝大多数情况下，使用`Math`就足够了。
+
+#### 2.10.5 Random
+
+`Random`用来创建伪随机数。所谓伪随机数，是指只要给定一个初始的种子，产生的随机数序列是完全一样的。
+
+要生成一个随机数，可以使用`nextInt()`、`nextLong()`、`nextFloat()`、`nextDouble()`：
+```java
+Random r = new Random();
+r.nextInt(); // 2071575453,每次都不一样
+r.nextInt(10); // 5,生成一个[0,10)之间的int
+r.nextLong(); // 8811649292570369305,每次都不一样
+r.nextFloat(); // 0.54335...生成一个[0,1)之间的float
+r.nextDouble(); // 0.3716...生成一个[0,1)之间的double
+```
+
+如果我们在创建Random实例时指定一个种子，就会得到完全确定的随机数序列：
+```java
+public class Main {
+    public static void main(String[] args) {
+        Random r = new Random(12345);
+        for (int i = 0; i < 10; i++) {
+            System.out.println(r.nextInt(100));
+        }
+        // 51, 80, 41, 28, 55...
+    }
+}
+```
+
+前面我们使用的`Math.random()`实际上内部调用了`Random`类，所以它也是伪随机数，只是我们无法指定种子。
+
+#### 1.10.6 SecureRandom
+
+有伪随机数，就有真随机数。实际上真正的真随机数只能通过量子力学原理来获取，而我们想要的是一个不可预测的安全的随机数，`SecureRandom`就是用来创建安全的随机数的：
+```java
+SecureRandom sr = new SecureRandom();
+System.out.println(sr.nextInt(100));
+```
+
+`SecureRandom`无法指定种子，它使用`RNG`（`random number generator`）算法。`JDK`的`SecureRandom`实际上有多种不同的底层实现，有的使用安全随机种子加上伪随机数算法来产生安全的随机数，有的使用真正的随机数生成器。实际使用的时候，可以优先获取高强度的安全随机数生成器，如果没有提供，再使用普通等级的安全随机数生成器：
+```java
+public class Main {
+    public static void main(String[] args) {
+        SecureRandom sr = null;
+        try {
+            sr = SecureRandom.getInstanceStrong(); // 获取高强度安全随机数生成器
+        } catch (NoSuchAlgorithmException e) {
+            sr = new SecureRandom(); // 获取普通的安全随机数生成器
+        }
+        byte[] buffer = new byte[16];
+        sr.nextBytes(buffer); // 用安全随机数填充buffer
+        System.out.println(Arrays.toString(buffer));
+    }
+}
+
+```
+
+`SecureRandom`的安全性是通过操作系统提供的安全的随机种子来生成随机数。这个种子是通过`CPU`的热噪声、读写磁盘的字节、网络流量等各种随机事件产生的“熵”。
+
+在密码学中，安全的随机数非常重要。如果使用不安全的伪随机数，所有加密体系都将被攻破。因此，时刻牢记必须使用`SecureRandom`来产生安全的随机数。
+
+`需要使用安全随机数的时候，必须使用SecureRandom，绝不能使用Random！`
+
+#### 1.10.7 总结
+Java提供的常用工具类有：
+
+- Math：数学计算 
+- Random：生成伪随机数 
+- SecureRandom：生成安全的随机数
