@@ -4,7 +4,7 @@
 ## 3. [数组操作](https://github.com/LiuTingHu/Notes/blob/master/java/docs/%E6%95%B0%E7%BB%84%E6%93%8D%E4%BD%9C.md)
 ## 4. [面向对象-基础](https://github.com/LiuTingHu/Notes/blob/master/java/docs/OOP.md)
 ## 5. [面向对象-核心类](https://github.com/LiuTingHu/Notes/blob/master/java/docs/OOP.md#2-%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1-%E6%A0%B8%E5%BF%83%E7%B1%BB)
-## 6. TODO 异常处理
+## 6. [异常处理](https://github.com/LiuTingHu/Notes/blob/master/java/docs/%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86.md)
 ## 7. TODO 反射
 ## 8. TODO 注解
 ## 9. TODO 泛型
