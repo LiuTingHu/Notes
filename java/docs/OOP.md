@@ -557,8 +557,111 @@ Java的内部类可分为Inner Class、Anonymous Class和Static Nested Class三�
 
 ## 2. 面向对象-核心类
 ### 2.1 字符串和编码
+在Java中，`String`是一个引用类型，它本身也是一个`class`。但是，Java编译器对`String`有特殊处理，即可以直接用`"..."`来表示一个字符串：
+
+`String s1 = "Hello!";`
+
+实际上字符串在`String`内部是通过一个`char[]`数组表示的，因此，按下面的写法也是可以的：
+
+`String s2 = new String(new char[] {'H', 'e', 'l', 'l', 'o', '!'});`
+
+因为`String`太常用了，所以Java提供了`"..."`这种字符串字面量表示方法。
+
+**常用的字符串方法**
+
+`String s = "Hello";
+String s2 = "Hello World";`
+
+|字符串方法|说明|实例|
+|----|----|----|
+|`equals()`| 字符串相等比较。只能用这个，不能用 `==` | `s1.equals(s2)` |
+|`equalsIgnoreCase()`| 字符串相等比较。和`equals()`一样，区别是此方法忽略大小写 | `s1.equals(s2)` |
+|`contains()`| 字符串是否包含子串 | `"Hello".contains("ll"); // true` |
+|`indexOf()`, `lastIndexOf()`, `startsWith()`, `endsWith()` | 字符串搜索子串 | `"Hello".indexOf("l"); // 2`, `"Hello".lastIndexOf("l"); // 3`, `"Hello".startsWith("He"); // true`, `"Hello".endsWith("lo"); // true` |
+|`substring()`| 字符串提取（截取）子串，索引从`0`开始 | `"Hello".substring(2); // "llo"`, `"Hello".substring(2, 4); "ll"` |
+|`trim()`| 去除首位空白字符（包含`空格`，`\t`，`\r`，`\n`） |`"  \tHello\r\n ".trim(); // "Hello"`|
+|`strip()`| 去除首位空白字符（和`trim`不同的是，类似中文空格`\u3000`也会被去除） |`"\u3000Hello\u3000".strip(); // "Hello"`, `" Hello ".stripLeading(); // "Hello "`,`" Hello ".stripTrailing(); // " Hello"` |
+|`isEmpty()`| 判断是否为空 | `"".isEmpty(); // true，因为字符串长度为0` , `"  ".isEmpty(); // false，因为字符串长度不为0` |
+|`isBlank()`| 判断是否为空白字符串 | `"  \n".isBlank(); // true，因为只包含空白字符` , `" Hello ".isBlank(); // false，因为包含非空白字符` |
+|`replace()`| 替换字符串 | `String s = "hello";`, `s.replace('l', 'w'); // "hewwo"，所有字符'l'被替换为'w'`, `s.replace("ll", "~~"); // "he~~o"，所有子串"ll"被替换为"~~"` |
+|`replaceAll()`| 替换字符串 | `String s = "A,,B;C ,D";`, `s.replaceAll("[\\,\\;\\s]+", ","); // "A,B,C,D"` |
+|`split()`| 分割字符串 | `String s = "A,B,C,D";`, `String[] ss = s.split("\\,"); // {"A", "B", "C", "D"}` |
+|`join()`| 拼接字符串 | `String[] arr = {"A", "B", "C"};`, `String s = String.join("***", arr); // "A***B***C"` |
+|`formatted()`, `format()`| 格式化字符串（占位符有`%s`：显示字符串；`%d`：显示整数；`%x`：显示十六进制整数；`%f`：显示浮点数。） | `public class Main {public static void main(String[] args) {String s = "Hi %s, your score is %d!";System.out.println(s.formatted("Alice", 80));System.out.println(String.format("Hi %s, your score is %.2f!", "Bob", 59.5));}}` |
+|`valueOf()`| 将任意基本类型或引用类型转换为字符串 | `String.valueOf(123); // "123"`,`String.valueOf(45.67); // "45.67"`,`String.valueOf(true); // "true"`,`String.valueOf(new Object()); // 类似java.lang.Object@636be97c` |
+|`Integer.parseInt()`| 将字符串转为整型 | `int n1 = Integer.parseInt("123"); // 123`, `int n2 = Integer.parseInt("ff", 16); // 按十六进制转换，255` |
+|`Boolean.parseBoolean()`| 将字符串转为`boolean`型 | `boolean b1 = Boolean.parseBoolean("true"); // true`, `boolean b2 = Boolean.parseBoolean("FALSE"); // false` |
+|`Integer.getInteger()`| 把该字符串对应的系统变量转换为`Integer` | `Integer.getInteger("java.version"); // 版本号，11` |
+|`toCharArray()`, `new String()`| 转换为char[] 。String和char[]类型可以互换| `char[] cs = "Hello".toCharArray(); // String -> char[]`, `String s = new String(cs); // char[] -> String` |
+
+**字符串编码**
+
+我们可以手动把字符串转换为其他编码。如：
+
+```java
+byte[] b1 = "Hello".getBytes(); // 按系统默认编码转换，不推荐
+byte[] b2 = "Hello".getBytes("UTF-8"); // 按UTF-8编码转换
+byte[] b2 = "Hello".getBytes("GBK"); // 按GBK编码转换
+byte[] b3 = "Hello".getBytes(StandardCharsets.UTF_8); // 按UTF-8编码转换
+```
+
+如果要把已知编码的byte[]转换为String，可以这样做：
+
+```java
+byte[] b = ...
+String s1 = new String(b, "GBK"); // 按GBK转换
+String s2 = new String(b, StandardCharsets.UTF_8); // 按UTF-8转换
+```
+
+始终牢记：Java的String和char在内存中总是以Unicode编码表示。
+
+**总结**
+
+- Java字符串String是不可变对象； 
+- 字符串操作不改变原字符串内容，而是返回新字符串； 
+- 常用的字符串操作：提取子串、查找、替换、大小写转换等； 
+- Java使用Unicode编码表示String和char； 
+- 转换编码就是将String和byte[]转换，需要指定编码； 
+- 转换为byte[]时，始终优先考虑UTF-8编码。
 
 ### 2.2 StringBuilder
+Java编译器对String做了特殊处理，使得我们可以直接用`+`拼接字符串。
+
+考察下面的循环代码：
+```java
+String s = "";
+for (int i = 0; i < 1000; i++) {
+    s = s + "," + i;
+}
+```
+
+虽然可以直接拼接字符串，但是，在循环中，每次循环都会创建新的字符串对象，然后扔掉旧的字符串。这样，绝大部分字符串都是临时对象，不但浪费内存，还会影响GC效率。
+
+为了能高效拼接字符串，Java标准库提供了`StringBuilder`，它是一个可变对象，可以预分配缓冲区，这样，往StringBuilder中新增字符时，不会创建新的临时对象：
+
+```java
+StringBuilder sb = new StringBuilder(1024);
+for (int i = 0; i < 1000; i++) {
+  sb.append(',');
+  sb.append(i);
+}
+String s = sb.toString();
+```
+
+`StringBuilder`还可以进行链式操作。
+
+**注意**：对于普通的字符串`+`操作，并不需要我们将其改写为`StringBuilder`，因为Java编译器在编译时就自动把多个连续的+操作编码为`StringConcatFactory`的操作。在运行期，`StringConcatFactory`会自动把字符串连接操作优化为数组复制或者`StringBuilder`操作。
+
+你可能还听说过`StringBuffer`，这是`Java`早期的一个`StringBuilder`的线程安全版本，它通过同步来保证多个线程操作`StringBuffer`也是安全的，但是同步会带来执行速度的下降。
+
+`StringBuilder`和`StringBuffer`接口完全相同，现在完全没有必要使用`StringBuffer`。
+
+**总结**
+- `StringBuilder`是可变对象，用来高效拼接字符串；
+
+- `StringBuilder`可以支持链式操作，实现链式操作的关键是返回实例本身；
+
+- `StringBuffer`是`StringBuilder`的线程安全版本，现在很少使用。
 
 ### 2.3 StringJoiner
 
