@@ -4,6 +4,7 @@ import java.io.UnsupportedEncodingException;
 import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.Scanner;
+import java.util.logging.Logger;
 
 /**
  * JAVA学习实战记录
@@ -17,7 +18,21 @@ public class Index {
     public static void main(String[] args) throws UnsupportedEncodingException {
 //        study20210923(args);
 //        study20211207(args);
-        exceptionTest(args);
+//        exceptionTest(args); //异常
+        logTest(args); //日志
+    }
+
+    /**
+     * 日志处理
+     * @param args
+     */
+    public static void logTest(String[] args){
+
+        Logger logger = Logger.getGlobal();
+        logger.info("start process...");
+        logger.warning("memory is running out...");
+        logger.fine("ignored.");
+        logger.severe("process will be terminated...");
     }
 
     /**
@@ -25,7 +40,12 @@ public class Index {
      * @param args
      */
     public static void exceptionTest(String[] args) throws UnsupportedEncodingException {
-//        try {
+
+//        double x = Math.abs(10);
+//        assert x >= 0:"x >= 0";
+//        System.out.println(x);
+//        System.exit(1);
+        try {
             // 假设用户输入了abc：
             String s = "abc";
             byte[] s1 = s.getBytes("GBK");
@@ -38,27 +58,28 @@ public class Index {
             // ok:
             if (1==2)
             {
-//                throw new FileNotFoundException("asdf");
+                throw new FileNotFoundException("asdf");
             }
-//        } catch (FileNotFoundException e) {
-//            // file not found:
-//            System.out.println("异常file not found：" + e.getMessage());
-//        } catch (SecurityException e) {
-//            // no read permission:
-//        } catch (IOException e) {
-//            // io error:
-//        } catch (Exception e) {
-//            // other error:
-////            System.out.println(e);
-////            e.printStackTrace();
-////            System.out.println(
-////                    "异常："
-////                    + e.getCause() + "===\n "
-////                    + e.toString() + "===\n "
-////                    + e.getClass() + "===\n "
-////                    + e.getMessage()
-////            );
-//        }
+        } catch (FileNotFoundException e) {
+            // file not found:
+            System.out.println("异常file not found：" + e.getMessage());
+        } catch (SecurityException e) {
+            // no read permission:
+        } catch (IOException e) {
+            // io error:
+        } catch (Exception e) {
+            // other error:
+//            System.out.println(e);
+//            e.printStackTrace();
+//            System.out.println(
+//                    "异常："
+//                    + e.getCause() + "===\n "
+//                    + e.toString() + "===\n "
+//                    + e.getClass() + "===\n "
+//                    + e.getMessage()
+//            );
+        }
+
     }
 
     /**
