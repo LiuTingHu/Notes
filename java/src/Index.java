@@ -1,3 +1,6 @@
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.Scanner;
@@ -11,9 +14,51 @@ public class Index {
      *  主程
      * @param args
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws UnsupportedEncodingException {
 //        study20210923(args);
-        study20211207(args);
+//        study20211207(args);
+        exceptionTest(args);
+    }
+
+    /**
+     * 异常处理
+     * @param args
+     */
+    public static void exceptionTest(String[] args) throws UnsupportedEncodingException {
+//        try {
+            // 假设用户输入了abc：
+            String s = "abc";
+            byte[] s1 = s.getBytes("GBK");
+            System.out.println("===s1===");
+            System.out.println(s1);
+            System.out.println("===s1 1===");
+//            return ;
+
+//            int n = Integer.parseInt(s); // NumberFormatException!
+            // ok:
+            if (1==2)
+            {
+//                throw new FileNotFoundException("asdf");
+            }
+//        } catch (FileNotFoundException e) {
+//            // file not found:
+//            System.out.println("异常file not found：" + e.getMessage());
+//        } catch (SecurityException e) {
+//            // no read permission:
+//        } catch (IOException e) {
+//            // io error:
+//        } catch (Exception e) {
+//            // other error:
+////            System.out.println(e);
+////            e.printStackTrace();
+////            System.out.println(
+////                    "异常："
+////                    + e.getCause() + "===\n "
+////                    + e.toString() + "===\n "
+////                    + e.getClass() + "===\n "
+////                    + e.getMessage()
+////            );
+//        }
     }
 
     /**
@@ -27,6 +72,35 @@ public class Index {
         BigDecimal bd = new BigDecimal("123.4567891234567891234567890");
         System.out.println(bd); // 15241.55677489
         System.out.println(bd.multiply(bd)); // 15241.55677489
+
+        /**
+         * 异常处理
+         */
+        try {
+            // 假设用户输入了abc：
+            String s = "abc";
+            int n = Integer.parseInt(s); // NumberFormatException!
+            // ok:
+            if (1==2)
+            {
+                throw new FileNotFoundException("asdf");
+            }
+        } catch (FileNotFoundException e) {
+            // file not found:
+            System.out.println("异常file not found：" + e.getMessage());
+        } catch (SecurityException e) {
+            // no read permission:
+        } catch (IOException e) {
+            // io error:
+        } catch (Exception e) {
+            // other error:
+            System.out.println("异常：" + e.getMessage());
+        }
+
+
+
+        // 用户删除了该文件：
+//        String t = readFile("C:\\abc.txt"); // FileNotFoundException!
 
     }
 
