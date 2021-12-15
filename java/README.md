@@ -5,9 +5,9 @@
 ## 4. [面向对象-基础](https://github.com/LiuTingHu/Notes/blob/master/java/docs/OOP.md)
 ## 5. [面向对象-核心类](https://github.com/LiuTingHu/Notes/blob/master/java/docs/OOP.md#2-%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1-%E6%A0%B8%E5%BF%83%E7%B1%BB)
 ## 6. [异常处理](https://github.com/LiuTingHu/Notes/blob/master/java/docs/%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86.md)
-## 7. TODO 反射
-## 8. TODO 注解
-## 9. TODO 泛型
+## 7. [反射](https://github.com/LiuTingHu/Notes/blob/master/java/docs/%E5%8F%8D%E5%B0%84.md)
+## 8. [注解](https://github.com/LiuTingHu/Notes/blob/master/java/docs/%E6%B3%A8%E8%A7%A3.md)
+## 9. [泛型](https://github.com/LiuTingHu/Notes/blob/master/java/docs/%E6%B3%9B%E5%9E%8B.md)
 ## 10. TODO 集合
 ## 11. TODO IO
 ## 12. TODO 日期和时间
