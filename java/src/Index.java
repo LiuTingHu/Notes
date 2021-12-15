@@ -19,7 +19,13 @@ public class Index {
 //        study20210923(args);
 //        study20211207(args);
 //        exceptionTest(args); //异常
-        logTest(args); //日志
+//        logTest(args); //日志
+        /*** 反射 ***/
+        printClassInfo("".getClass());
+        printClassInfo(Runnable.class);
+        printClassInfo(java.time.Month.class);
+        printClassInfo(String[].class);
+        printClassInfo(int.class);
     }
 
     /**
@@ -35,17 +41,39 @@ public class Index {
         logger.severe("process will be terminated...");
     }
 
+    static void printClassInfo(Class cls) {
+        System.out.println("Class name: " + cls.getName());
+        System.out.println("Simple name: " + cls.getSimpleName());
+        if (cls.getPackage() != null) {
+            System.out.println("Package name: " + cls.getPackage().getName());
+        }
+        System.out.println("is interface: " + cls.isInterface());
+        System.out.println("is enum: " + cls.isEnum());
+        System.out.println("is array: " + cls.isArray());
+        System.out.println("is primitive: " + cls.isPrimitive());
+        System.out.println(" ========================== ");
+    }
+
+
+    public static void exceptionTestTwo(String s) throws FileNotFoundException {
+        if (s==null) {
+            throw new FileNotFoundException();
+        }
+    }
+
+
     /**
      * 异常处理
      * @param args
      */
-    public static void exceptionTest(String[] args) throws UnsupportedEncodingException {
-
+    public static void exceptionTest(String[] args) {
 //        double x = Math.abs(10);
 //        assert x >= 0:"x >= 0";
 //        System.out.println(x);
 //        System.exit(1);
         try {
+
+//            new Integer();
             // 假设用户输入了abc：
             String s = "abc";
             byte[] s1 = s.getBytes("GBK");
@@ -54,11 +82,14 @@ public class Index {
             System.out.println("===s1 1===");
 //            return ;
 
+//            Class.forName()
+//            s.;
 //            int n = Integer.parseInt(s); // NumberFormatException!
             // ok:
             if (1==2)
             {
                 throw new FileNotFoundException("asdf");
+//                throw new NumberFormatException("asdf");
             }
         } catch (FileNotFoundException e) {
             // file not found:
