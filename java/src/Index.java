@@ -2,7 +2,9 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.math.BigDecimal;
+import java.net.HttpRetryException;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Scanner;
 import java.util.logging.Logger;
 
@@ -18,14 +20,14 @@ public class Index {
     public static void main(String[] args) throws UnsupportedEncodingException {
 //        study20210923(args);
 //        study20211207(args);
-//        exceptionTest(args); //异常
+        exceptionTest(args); //异常
 //        logTest(args); //日志
         /*** 反射 ***/
-        printClassInfo("".getClass());
-        printClassInfo(Runnable.class);
-        printClassInfo(java.time.Month.class);
-        printClassInfo(String[].class);
-        printClassInfo(int.class);
+//        printClassInfo("".getClass());
+//        printClassInfo(Runnable.class);
+//        printClassInfo(java.time.Month.class);
+//        printClassInfo(String[].class);
+//        printClassInfo(int.class);
     }
 
     /**
@@ -55,53 +57,50 @@ public class Index {
     }
 
 
-    public static void exceptionTestTwo(String s) throws FileNotFoundException {
-        if (s==null) {
-            throw new FileNotFoundException();
-        }
-    }
-
-
     /**
      * 异常处理
      * @param args
      */
     public static void exceptionTest(String[] args) {
-//        double x = Math.abs(10);
-//        assert x >= 0:"x >= 0";
+        double x = Math.abs(10);
+        assert x >= 0:"x >= 0";
+        List<>;
 //        System.out.println(x);
 //        System.exit(1);
         try {
 
 //            new Integer();
             // 假设用户输入了abc：
-            String s = "abc";
-            byte[] s1 = s.getBytes("GBK");
-            System.out.println("===s1===");
-            System.out.println(s1);
-            System.out.println("===s1 1===");
+//            String s = "abc";
+//            byte[] s1 = s.getBytes("GBK");
+//            System.out.println("===s1===");
+//            System.out.println(s1);
+//            System.out.println("===s1 1===");
 //            return ;
 
 //            Class.forName()
 //            s.;
 //            int n = Integer.parseInt(s); // NumberFormatException!
             // ok:
-            if (1==2)
+            if (1==1)
             {
                 throw new FileNotFoundException("asdf");
 //                throw new NumberFormatException("asdf");
             }
-        } catch (FileNotFoundException e) {
-            // file not found:
-            System.out.println("异常file not found：" + e.getMessage());
-        } catch (SecurityException e) {
-            // no read permission:
-        } catch (IOException e) {
+//        } catch (FileNotFoundException e) {
+//            // file not found:
+//            System.out.println("异常file not found：" + e.getMessage());
+//        } catch (SecurityException e) {
+//            // no read permission:
+//            System.out.println("异常file not found 02：" + e.getMessage());
+//        } catch (IOException e) {
             // io error:
+//            System.out.println("异常file not found 03：" + e.getMessage());
         } catch (Exception e) {
+            System.out.println("异常file not found 04：" + e.getMessage());
             // other error:
 //            System.out.println(e);
-//            e.printStackTrace();
+            e.printStackTrace();
 //            System.out.println(
 //                    "异常："
 //                    + e.getCause() + "===\n "
