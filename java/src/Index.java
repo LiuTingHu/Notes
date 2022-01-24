@@ -3,9 +3,7 @@ import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.math.BigDecimal;
 import java.net.HttpRetryException;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 import java.util.logging.Logger;
 
 /**
@@ -20,7 +18,7 @@ public class Index {
     public static void main(String[] args) throws UnsupportedEncodingException {
 //        study20210923(args);
 //        study20211207(args);
-        exceptionTest(args); //异常
+//        exceptionTest(args); //异常
 //        logTest(args); //日志
         /*** 反射 ***/
 //        printClassInfo("".getClass());
@@ -28,6 +26,8 @@ public class Index {
 //        printClassInfo(java.time.Month.class);
 //        printClassInfo(String[].class);
 //        printClassInfo(int.class);
+
+        collectionTest(); //集合
     }
 
     /**
@@ -57,6 +57,12 @@ public class Index {
     }
 
 
+    public static void collectionTest(){
+
+//        Collection\
+        Map
+    }
+
     /**
      * 异常处理
      * @param args
@@ -64,7 +70,7 @@ public class Index {
     public static void exceptionTest(String[] args) {
         double x = Math.abs(10);
         assert x >= 0:"x >= 0";
-        List<>;
+//        List<>;
 //        System.out.println(x);
 //        System.exit(1);
         try {
