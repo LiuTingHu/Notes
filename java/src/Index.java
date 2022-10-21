@@ -60,7 +60,10 @@ public class Index {
     public static void collectionTest(){
 
 //        Collection\
-        Map
+        Stack t = new Stack();
+        t.push(2);
+        System.out.println(t.get(0));
+        System.out.println(" ========================== ");
     }
 
     /**
